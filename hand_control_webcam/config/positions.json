@@ -1,0 +1,49 @@
+{
+    "poses": {
+        "BARDAK_AL": {
+            "pos": [4500, 3500, 3500, 4000, 4000, 4000],
+            "vel": [12000, 12000, 12000, 12000, 12000, 12000],
+            "cur": [700, 700, 700, 700, 700, 700],
+            "ok_mode": "position",
+            "cur_tol": 50,
+            "pos_tol": 300,
+            "description": "Bardagi kavra (havada test icin 700 akim)"
+        },
+        "BARDAK_BIRAK": {
+            "pos": [2000, 0, 0, 0, 0, 0],
+            "vel": [12000, 12000, 12000, 12000, 12000, 12000],
+            "cur": [700, 700, 700, 700, 700, 700],
+            "ok_mode": "position",
+            "cur_tol": 50,
+            "pos_tol": 300,
+            "description": "Bardagi birak"
+        },
+        "ZERO": {
+            "pos": [0, 0, 0, 0, 0, 0],
+            "vel": [12000, 12000, 12000, 12000, 12000, 12000],
+            "cur": [700, 700, 700, 700, 700, 700],
+            "ok_mode": "position",
+            "cur_tol": 50,
+            "pos_tol": 300,
+            "description": "Sifir / notr pozisyon"
+        },
+        "BYE_UP": {
+            "pos": [0, 0, 0, 0, 0, 0],
+            "vel": [12000, 12000, 12000, 12000, 12000, 12000],
+            "cur": [500, 500, 500, 500, 500, 500],
+            "ok_mode": "position",
+            "cur_tol": 50,
+            "pos_tol": 500,
+            "description": "Bye bye - parmaklar yukari (acik)"
+        },
+        "BYE_DOWN": {
+            "pos": [0, 0, 3500, 3500, 3500, 3500],
+            "vel": [12000, 12000, 12000, 12000, 12000, 12000],
+            "cur": [500, 500, 500, 500, 500, 500],
+            "ok_mode": "position",
+            "cur_tol": 50,
+            "pos_tol": 500,
+            "description": "Bye bye - motor3-6 asagi (kapali)"
+        }
+    }
+}
