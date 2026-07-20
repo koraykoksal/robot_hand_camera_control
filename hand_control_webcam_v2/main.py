@@ -21,13 +21,14 @@ import time
 import cv2
 
 import settings as config
+from camera import open_camera
 from hand_tracker import HandTracker
 from robot_interface import create_hand, compute_targets, JOINT_ORDER
 import visualizer
 
-APP_NAME = "LHandPro Kamera Kontrol"
+APP_NAME = "LHandPro Kamera Kontrol (v2 OpenCV)"
 APP_VERSION = "1.0.0"
-WINDOW_NAME = "LHandPro - Kamera Kontrol"
+WINDOW_NAME = "LHandPro - Kamera Kontrol v2 (OpenCV)"
 FINGERS = ["thumb", "index", "middle", "ring", "pinky"]
 _FSHORT = {"thumb": "başp", "index": "işrt", "middle": "orta", "ring": "yüzk", "pinky": "serç"}
 
@@ -139,31 +140,10 @@ def main():
 
     # --- Kamera + takip ---
     tracker = HandTracker()
-    backends = {"DSHOW": cv2.CAP_DSHOW, "MSMF": cv2.CAP_MSMF, "ANY": cv2.CAP_ANY}
-    be = backends.get(getattr(config, "CAMERA_BACKEND", "ANY").upper(), cv2.CAP_ANY)
-    cap = cv2.VideoCapture(config.CAMERA_INDEX, be)
-    if not cap.isOpened():          # backend başarısızsa varsayılana dön
-        cap = cv2.VideoCapture(config.CAMERA_INDEX)
-    # MJPG: çoğu webcam'de yüksek çözünürlükte FPS'i kat kat artırır
-    fourcc = getattr(config, "CAMERA_FOURCC", "")
-    if fourcc:
-        cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*fourcc))
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, config.FRAME_WIDTH)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, config.FRAME_HEIGHT)
-    if getattr(config, "CAMERA_FPS", 0):
-        cap.set(cv2.CAP_PROP_FPS, config.CAMERA_FPS)
-    try:
-        cap.set(cv2.CAP_PROP_BUFFERSIZE, getattr(config, "CAMERA_BUFFERSIZE", 1))
-    except Exception:
-        pass
-    if not cap.isOpened():
-        print(f"❌ Kamera açılamadı (index={config.CAMERA_INDEX}).")
+    cap, used = open_camera()
+    if cap is None:
         tracker.close()
         return
-    print(f"[Kamera] {int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))}x"
-          f"{int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))} @ "
-          f"{cap.get(cv2.CAP_PROP_FPS):.0f} FPS  (backend={config.CAMERA_BACKEND}, "
-          f"fourcc={fourcc or 'varsayilan'}, inference genisligi={config.INFER_WIDTH})")
 
     cv2.namedWindow(WINDOW_NAME, cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)
     window_maximized = False
@@ -179,16 +159,24 @@ def main():
     forces = {}
     prev_t = time.time()
     fps = 0.0
+    miss = 0
+    lost_since = None
+    homed_on_lost = False
 
     print("Hazır. Pencere açık. Robotu bağlamak için 'R', komut için 'SPACE'.")
-    print("KALİBRASYON: elini tam AÇ ve 'O'ya bas; sonra YUMRUK yapıp 'C'ye bas. "
-          "(Açık el kıvrımı 0 olmalı.)")
+    print("Kalibrasyon gerekmiyor: aci araliklari settings.py'de sabit "
+          "(calisan uygulamadan alindi).")
     try:
         while True:
             ok, frame = cap.read()
-            if not ok:
-                print("Kare alınamadı.")
+            if not ok or frame is None or frame.size == 0:
+                miss += 1
+                if miss <= 3:
+                    time.sleep(0.05)
+                    continue
+                print("Kamera kare vermiyor (kablo/başka uygulama?). Çıkılıyor.")
                 break
+            miss = 0
 
             if mirror:
                 frame = cv2.flip(frame, 1)

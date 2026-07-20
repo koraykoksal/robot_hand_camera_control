@@ -90,7 +90,7 @@ def _draw_hud(frame, hand, forces, sending, mirror, target_hand, fps, robot_conn
     _panel(frame, 0, 0, w, 20, alpha=0.5)
     status = "el var" if hand.found else "el yok"
     det = hand.handedness or "-"
-    _text(frame, f"Hedef: {target_hand}   Algilanan: {det}   [{status}]",
+    _text(frame, f"v2   Hedef: {target_hand}   Algilanan: {det}   [{status}]",
           (8, 14), 0.38, (200, 255, 200), 1)
 
     if not robot_connected:
@@ -126,5 +126,5 @@ def _draw_hud(frame, hand, forces, sending, mirror, target_hand, fps, robot_conn
     _panel(frame, 0, h - 16, w, h, alpha=0.5)
     perf = f"FPS {fps:.0f}" + (f" | {infer_ms:.0f}ms" if config.SHOW_PERF else "")
     _text(frame, f"{perf}   [q]cikis [r]robot [space]gonder [m]ayna [h]el "
-                 f"[o]acik [c]kapali [z]home",
+                 f"[z]home",
           (8, h - 5), 0.34, (175, 175, 175), 1)

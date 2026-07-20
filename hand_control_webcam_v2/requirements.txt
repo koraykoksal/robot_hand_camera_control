@@ -1,0 +1,8 @@
+# v2 — MediaPipe (calisan uygulamadan alinan kivrim matematigi ile)
+opencv-python>=4.8
+mediapipe>=0.10.9
+numpy>=1.24
+
+# Robot SDK (EtherCAT)
+pysoem~=1.1.12
+# NOT (Windows): pysoem icin Npcap kurulu olmali.
