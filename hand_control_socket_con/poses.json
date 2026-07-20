@@ -1,0 +1,67 @@
+{
+  "poses": {
+    "ZERO": {
+      "pos": [0, 0, 0, 0, 0, 0],
+      "vel": [12000, 12000, 12000, 12000, 12000, 12000],
+      "cur": [400, 400, 400, 400, 400, 400],
+      "pos_tol": 300,
+      "description": "Sifir / notr pozisyon (el tamamen acik)"
+    },
+    "ACIK": {
+      "pos": [0, 0, 0, 0, 0, 0],
+      "vel": [12000, 12000, 12000, 12000, 12000, 12000],
+      "cur": [400, 400, 400, 400, 400, 400],
+      "pos_tol": 300,
+      "description": "El tamamen acik (ZERO ile ayni)"
+    },
+    "YUMRUK": {
+      "pos": [8000, 6000, 10000, 10000, 10000, 10000],
+      "vel": [12000, 12000, 12000, 12000, 12000, 12000],
+      "cur": [500, 500, 500, 500, 500, 500],
+      "pos_tol": 400,
+      "description": "Tum parmaklar kapali"
+    },
+    "BARDAK_AL": {
+      "pos": [5000, 4500, 3500, 4000, 4000, 4000],
+      "vel": [7000, 7000, 7000, 7000, 7000, 7000],
+      "cur": [700, 700, 700, 700, 700, 700],
+      "pos_tol": 300,
+      "description": "Bardagi kavra"
+    },
+    "BARDAK_BIRAK": {
+      "pos": [5000, 0, 0, 0, 0, 0],
+      "vel": [7000, 7000, 7000, 7000, 7000, 7000],
+      "cur": [700, 700, 700, 700, 700, 700],
+      "pos_tol": 300,
+      "description": "Bardagi birak"
+    },
+    "BYE_UP": {
+      "pos": [0, 0, 0, 0, 0, 0],
+      "vel": [20000, 20000, 20000, 20000, 20000, 20000],
+      "cur": [500, 500, 500, 500, 500, 500],
+      "pos_tol": 500,
+      "description": "Bye bye - parmaklar yukari (acik)"
+    },
+    "BYE_DOWN": {
+      "pos": [0, 0, 3500, 3500, 3500, 3500],
+      "vel": [20000, 20000, 20000, 20000, 20000, 20000],
+      "cur": [500, 500, 500, 500, 500, 500],
+      "pos_tol": 500,
+      "description": "Bye bye - motor3-6 asagi (kapali)"
+    },
+    "TEMIZLIK": {
+      "pos": [5000, 5500, 10000, 10000, 10000, 10000],
+      "vel": [20000, 20000, 20000, 20000, 20000, 20000],
+      "cur": [700, 700, 700, 700, 700, 700],
+      "pos_tol": 500,
+      "description": "Temizlik pozisyonu"
+    },
+    "ISARET": {
+      "pos": [3000, 3000, 0, 10000, 10000, 10000],
+      "vel": [15000, 15000, 15000, 15000, 15000, 15000],
+      "cur": [450, 450, 450, 450, 450, 450],
+      "pos_tol": 400,
+      "description": "Isaret parmagi acik, digerleri kapali"
+    }
+  }
+}

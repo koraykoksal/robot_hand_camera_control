@@ -1,0 +1,7 @@
+# Socket uygulamasi — kamera/mediapipe GEREKMEZ
+# (standart kutuphane socket/threading/json kullanilir)
+
+# Robot SDK (EtherCAT)
+pysoem~=1.1.12
+# NOT (Windows): pysoem icin Npcap kurulu olmali
+#   (x64/bin/npcap-1.82.exe, "WinPcap API-compatible Mode", sonra yeniden baslat)
