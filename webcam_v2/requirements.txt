@@ -1,0 +1,8 @@
+# v2 — SAF OpenCV (mediapipe GEREKMEZ)
+opencv-python>=4.8
+numpy>=1.24
+
+# Robot SDK (EtherCAT)
+pysoem~=1.1.12
+# NOT (Windows): pysoem icin Npcap kurulu olmali (x64/bin/npcap-1.82.exe,
+#   "WinPcap API-compatible Mode" secili kur, sonra yeniden baslat).

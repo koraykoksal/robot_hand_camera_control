@@ -1,0 +1,36 @@
+Bu klasöre (sdk/) SDK'daki EtherCAT dosyalarını koy. Uygulama SDK'ya buradan erişir.
+
+1) Vendor Python dosyaları — arşivdeki şu klasörden:
+   x64/share/LHandProLib/examples/EtherCAT_python/
+   Kopyalanacaklar:
+     - lhandprolib_loader.py
+     - lhandprolib_wrapper.py
+     - lhandpro_controller.py
+     - ethercat_master.py
+     - canfd_lib.py
+
+2) DLL dosyaları — arşivdeki x64/bin/ klasöründen:
+     - LHandProLib.dll            (ZORUNLU ana kütüphane)
+     - msvcp140.dll, msvcp140_1.dll, msvcp140_2.dll
+     - vcruntime140.dll, vcruntime140_1.dll
+     - concrt140.dll
+   (Visual C++ Redistributable x64 kuruluysa runtime DLL'leri gerekmeyebilir.
+    Sonu 'd.dll' ile bitenler DEBUG sürümüdür, GEREKMEZ.)
+
+   NOT: Klasör yapısı değiştiği için loader DLL'i otomatik ararken önce KENDİ
+   klasörüne (yani buraya, sdk/) bakar. Bu yüzden DLL'leri doğrudan bu klasöre koy.
+
+3) EtherCAT için ayrıca Npcap kurulu olmalı:
+   x64/bin/npcap-1.82.exe  ->  "WinPcap API-compatible Mode" seçili kur, sonra yeniden başlat.
+   (Npcap sistemsel kurulur; bu klasöre kopyalamana gerek yok.)
+
+Sonuç olarak sdk/ klasörü şöyle görünmeli:
+   sdk/
+   ├── lhandprolib_loader.py
+   ├── lhandprolib_wrapper.py
+   ├── lhandpro_controller.py
+   ├── ethercat_master.py
+   ├── LHandProLib.dll
+   ├── msvcp140.dll (+ _1, _2)
+   ├── vcruntime140.dll (+ _1)
+   └── concrt140.dll
